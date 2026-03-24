@@ -1,46 +1,30 @@
-# Paper A1: JOSIF | Record Linkage
+# JOSIF Record Linkage
 
-## 📌 Overview
+## Paper
 
-> This implementation is focused around using Record Linkage to unite SIM and SINASC databases.  
-
-This repository is based on our paper:  
-**"Proposal For Linkage Between Health Information Systems SIM And SINASC"**   
+>This repository is based on our paper:  
+**Proposal For Linkage Between Health Information Systems SIM And SINASC**  
 Authors: Morsoleto, R. et al.  
-Presented and accepted at: [JOSIF](https://josif.ifsuldeminas.edu.br/ojs/index.php/anais/index) 2024, accessible [here](https://josif.ifsuldeminas.edu.br/ojs/index.php/anais/article/view/2528)
+Presented and accepted at: [JOSIF](https://josif.ifsuldeminas.edu.br/ojs/index.php/anais/index) 2024.
 
-## 🚀 Setup
+## Installation & Usage
 
-Requirements are described [here](pyproject.toml), and can be 
-installed using the command:
+> [!IMPORTANT]  
+> The files ``DN.parquet.gzip`` and ``DO.parquet.gzip`` weren't included in this repository due to their size. Both will need to be manually loaded on to the ``data/input`` folder. 
+
+Poetry was used for dependency management. To download it, visit: [python-poetry.org](https://python-poetry.org/).
+
+Activate a virtual environment and execute:
 
 ```bash
 poetry install
+# Or
+pip install .
 ```
-* Poetry is required to use the command above, for download info visit: [python-poetry.org](https://python-poetry.org/)
-
-## ⚙ Run
-Due to the size of the files ``DN.parquet.gzip`` and ``DO.parquet.gzip``, they weren't included in the repository and may need to be manually loaded on to the project's ``data/input`` folder. 
-- The folder structure will be created during runtime for convenience.
 
 ```bash
-poetry run python main.py
+python main.py
 ```
 
-## 🔮 Structure
-
-````mermaid
-flowchart LR
-    a[Pre-processing] --> b[Linkage]
-````
-- **Pre-processing**: Responsible to handle raw data, removing
-duplicates and adding an index
-- **Record Linkage**: Blocks rows using ``DTNASC`` and ``CODMUNRES`` columns, then compares each pair's ``PESO``, ``PARTO``, ``GRAVIDEZ``, ``SEMAGESTAC`` and ``ESCMAE`` columns. Only pairs that feature the same value for all 7 columns become part of the new database
-
-
-## ✨ Dataset
-
-The dataset used corresponds to the interval 2012 to 2022. Both are available through the following links: [SINASC](https://github.com/GOPAD-Datasus/DB_SINASC) and [SIM](https://github.com/GOPAD-Datasus/DB_SIM)
-
-## 📝 License
+## License
 [LGNU](LICENSE) | © GOPAD 2025
